@@ -47,6 +47,28 @@
             <artifactId>geotools-suite</artifactId>
             <version>${org.geotools.bundle.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.codice.thirdparty</groupId>
+            <artifactId>gt-opengis</artifactId>
+            <version>${opengis.bundle.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-epsg-hsql</artifactId>
+            <version>${org.geotools.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-referencing</artifactId>
+            <version>${org.geotools.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>${commons-collections.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -80,7 +102,6 @@
                                             <value>COVEREDRATIO</value>
                                             <minimum>0.72</minimum>
                                         </limit>
-
                                     </limits>
                                 </rule>
                             </rules>
