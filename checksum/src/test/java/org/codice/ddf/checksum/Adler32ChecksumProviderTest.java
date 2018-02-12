@@ -28,7 +28,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestAdler32ChecksumProvider {
+public class Adler32ChecksumProviderTest {
 
   private ChecksumProvider checksumProvider;
 

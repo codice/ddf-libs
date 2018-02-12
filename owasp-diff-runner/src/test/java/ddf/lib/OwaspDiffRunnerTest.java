@@ -34,7 +34,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
 
-public class TestOwaspDiffRunner {
+public class OwaspDiffRunnerTest {
 
   @Rule public TemporaryFolder fakeRepo;
 
