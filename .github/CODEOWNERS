@@ -1,0 +1,27 @@
+# This is a comment.
+# Each line is a file pattern followed by one or more owners.
+# For more information on CODEOWNERS, see https://help.github.com/articles/about-codeowners/
+
+# Order is important; the last matching pattern takes the most precedence.
+# Within each subsection, keep all pattern matches in strict alphabetical order
+# to ensure they go from least to most granular. Additionally when adding a more granular pattern,
+# you must explicitly add any users/groups marked on broader patterns. Example:
+# Given a file starting as
+# ===
+# catalog/core/                  @user1
+# distribution/docs/             @user2
+# ===
+# When updating to add a pattern match for catalog/core/catalog-core-api for user3, it SHOULD be
+# updated to read
+# ===
+# catalog/core/                  @user1
+# catalog/core/catalog-core-api/ @user3 @user1
+# distribution/docs/             @user2
+# ===
+# If user1 were not added to the newly added, more granular match, they would be tagged on all changes
+# within the catalog/core/** hierarchy EXCEPT FOR those within catalog/core/catalog-core-api/**.
+# Exceptions may be made to this rule on a case-by-case basis with the input of the more general
+# codeowners.
+#
+# Order is important; the last matching pattern takes the most precedence.
+
