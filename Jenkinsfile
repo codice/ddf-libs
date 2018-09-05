@@ -44,7 +44,7 @@ pipeline {
                     }
                 }
                 stage ('Windows') {
-                    agent { label 'server-2016-small }
+                    agent { label 'server-2016-small' }
                     steps {
                         retry(3) {
                             checkout scm
