@@ -6,7 +6,6 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr:'25'))
         disableConcurrentBuilds()
         timestamps()
-        skipDefaultCheckout()   
     }
     triggers {
         /*
@@ -46,9 +45,6 @@ pipeline {
                 stage ('Windows') {
                     agent { label 'server-2016-small' }
                     steps {
-                        retry(3) {
-                            checkout scm
-                        }
                         withMaven(maven: 'Maven 3.5.4', jdk: 'jdk8-latest', globalMavenSettingsConfig: 'default-global-settings', mavenSettingsConfig: 'codice-maven-settings') {
                               bat 'mvn install -B -DskipStatic=true -DskipTests=true %DISABLE_DOWNLOAD_PROGRESS_OPTS%'
                               bat 'mvn clean install -B -Dgib.enabled=true -Dgib.referenceBranch=/refs/remotes/origin/%CHANGE_TARGET% %DISABLE_DOWNLOAD_PROGRESS_OPTS%'
@@ -70,9 +66,6 @@ pipeline {
                 stage ('Windows') {
                     agent { label 'server-2016-small'}
                     steps {
-                        retry(3) {
-                            checkout scm
-                        }
                         withMaven(maven: 'Maven 3.5.4', jdk: 'jdk8-latest', globalMavenSettingsConfig: 'default-global-settings', mavenSettingsConfig: 'codice-maven-settings') {
                               bat 'mvn clean install -B %DISABLE_DOWNLOAD_PROGRESS_OPTS%'
                         }
@@ -99,9 +92,6 @@ pipeline {
                 stage ('NodeJsSecurity') {
                     agent { label 'linux-small' }
                     steps {
-                        retry(3) {
-                            checkout scm
-                        }
                         script {
                             def packageFiles = findFiles(glob: '**/package.json')
                             for (int i = 0; i < packageFiles.size(); i++) {
@@ -160,9 +150,6 @@ pipeline {
                 stage ('Coverity') {
                     agent { label 'linux-medium' }
                     steps {
-                        retry(3) {
-                            checkout scm
-                        }
                         script {
                             if (env.BRANCH_NAME != 'master') {
                                 echo "Coverity is only run on master"
@@ -186,9 +173,6 @@ pipeline {
                 stage ('Codecov') {
                     agent { label 'linux-medium' }
                     steps {
-                        retry(3) {
-                            checkout scm
-                        }
                         withMaven(maven: 'M35', jdk: 'jdk8-latest', globalMavenSettingsConfig: 'default-global-settings', mavenSettingsConfig: 'codice-maven-settings', mavenOpts: '${LARGE_MVN_OPTS} ${LINUX_MVN_RANDOM}') {
                             withCredentials([string(credentialsId: 'DDF_CodeCov', variable: 'DDF_CODECOV_TOKEN')]) {
                                 sh 'mvn clean install -B -pl !$ITESTS $DISABLE_DOWNLOAD_PROGRESS_OPTS'
