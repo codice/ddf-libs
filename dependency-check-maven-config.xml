@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.1.xsd">
+  <!-- False positive against Tika -->
+    <suppress>
+        <notes>These CVEs are against versions less than 1.18 and we're on 1.18. False positives</notes>
+        <cve>CVE-2016-6809</cve>
+        <cve>CVE-2018-1335</cve>
+    </suppress>
+
+    <!-- Remove this suppression CVE-2017-5644 once DDF-3064 has been resolved-->
+    <suppress>
+        <notes>
+            This is not an issue since the vulnerability is in reading untrusted documents and
+            platform-metrics-reporting only creates them. The issue is resolved in version 3.16 but
+            will require code refactoring.
+            poi-3.12.jar (cpe:/a:apache:poi:3.12, org.apache.poi:poi:3.12) : CVE-2017-5644
+        </notes>
+        <cve>CVE-2017-5644</cve>
+    </suppress>
+    <suppress>
+        <notes>
+            These CVEs are not an issue since the software is not exposing STOMP over WebSocket
+            endpoints.
+        </notes>
+        <cve>CVE-2018-1270</cve>
+        <cve>CVE-2018-1275</cve>
+    </suppress>
+</suppressions>

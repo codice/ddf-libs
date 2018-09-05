@@ -15,7 +15,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>ddf.lib</groupId>
+        <groupId>org.codice.ddf.lib</groupId>
         <artifactId>lib</artifactId>
         <version>2.14.0-SNAPSHOT</version>
     </parent>
@@ -29,17 +29,8 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
+                <version>${frontend-plugin.version}</version>
                 <executions>
-                    <execution>
-                        <id>grunt build</id>
-                        <goals>
-                            <goal>grunt</goal>
-                        </goals>
-                        <configuration>
-                            <skip>true</skip>
-                            <arguments>build</arguments>
-                        </configuration>
-                    </execution>
                     <execution>
                         <id>yarn test</id>
                         <goals>
@@ -49,6 +40,15 @@
                         <configuration>
                             <skip>${skipTests}</skip>
                             <arguments>test</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>yarn install</id>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install --mutex network</arguments>
                         </configuration>
                     </execution>
                     <execution>
@@ -64,9 +64,11 @@
             </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.5.3</version>
+                <version>${maven-assembly-plugin.version}</version>
                 <configuration>
-                    <descriptor>src/assembly/dep.xml</descriptor>
+                    <descriptors>
+                        <descriptor>src/assembly/dep.xml</descriptor>
+                    </descriptors>
                     <finalName>pom-fix</finalName>
                 </configuration>
                 <executions>
@@ -82,6 +84,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
+                <version>${build-helper-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-artifacts</id>

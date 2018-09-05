@@ -18,7 +18,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>ddf.lib</groupId>
+        <groupId>org.codice.ddf.lib</groupId>
         <artifactId>lib</artifactId>
         <version>2.14.0-SNAPSHOT</version>
     </parent>
@@ -77,6 +77,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${maven-jacoco-plugin.version}</version>
                 <configuration>
                     <skip>true</skip>
                 </configuration>
